@@ -1,0 +1,10 @@
+{% extends "upload_form/base.html" %}
+
+{% block title %}error page{% endblock title %}
+{% block content %}
+    <div align="center">
+        <h2 align="center">It's not json file.
+            <br>Upload json file again.</h2>
+        <a href="{% url 'upload_form:form' %}"><button>back</button></a>
+    </div>
+{% endblock content %}

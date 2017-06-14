@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='ja'>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="content">
+        <title>Q-Learning Experimenter</title>
+    </head>
+    <body>
+        <h1><u>Q-Learning Experimenter</u></h1>
+
+        <h2>def intro():</h2>
+            <p>"""<br>
+            In this page, you can experiment the Q-Learning, <br>
+            using json which includes Q-Learning parameters.<br>
+            """
+            </p>
+
+        <h3><font color="red">required parameters(json):</font></h3>
+        <table border=1 cellpadding="2">
+            <tr>
+                <th>parameter</th>
+                <th>description</th>
+                <th>type</th>
+            </tr>
+            <tr>
+                <td>episode_num</td>
+                <td>How many times<br> the agent explore the nodes<br>
+                (from start to goal)</td>
+                <td>[int]</td>
+            </tr>
+            <tr>
+                <td>R</td>
+                <td>Reward matrix</td>
+                <td>[ndarray]</td>
+            </tr>
+            <tr>
+                <td>goal</td>
+                <td>goal node</td>
+                <td>[int]</int>
+            </tr>
+            <tr>
+                <td>alpha</td>
+                <td>learning late</td>
+                <td>[0.0, 1.0]</td>
+            </tr>
+            <tr>
+                <td>gamma</td>
+                <td>discount late</td>
+                <td>[0.0, 1.0]</td>
+            </tr>
+            <tr>
+                <td>tau</td>
+                <td>the parameter of Boltzmann distribution</td>
+                <td>[0.0, &infin;)</td>
+            </tr>
+            <tr>
+                <td>epsilon</td>
+                <td>the parameter of &epsilon;-greedy</td>
+                <td>[0.0, 1.0]</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <h2>def run_QLearning():</h2>
+
+        {% block content %}
+            {{ content }}
+        {% endblock %}
+
+
+    </body>
+</html>

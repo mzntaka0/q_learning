@@ -1,0 +1,15 @@
+{% extends "upload_form/base.html" %}
+
+{% block title %}uploader sample{% endblock title %}
+{% block content %}
+        <p>"""<br>
+        Upload json file of parameter.<br>
+        Then click 'run' button.<br>
+        """
+        </p>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <input type="submit" value="Run">
+    </form>
+{% endblock content %}

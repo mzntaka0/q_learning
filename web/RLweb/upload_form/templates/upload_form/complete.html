@@ -1,0 +1,14 @@
+{% extends "upload_form/base.html" %}
+
+{% block title %}upload completed{% endblock title %}
+{% block content %}
+    <div align="center">
+        <h3 align="center">Q-Learning result</h3>
+    <br>
+        {{ final_Q }}
+    <br>
+    <br>
+        <a href="{% url 'upload_form:form' %}"><button>back</button></a>
+    </div>
+
+{% endblock content %}
