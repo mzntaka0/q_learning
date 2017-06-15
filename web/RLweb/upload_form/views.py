@@ -5,9 +5,10 @@ from django.shortcuts import render, redirect
 from django.template.context_processors import csrf
 from django.conf import settings
 from upload_form.models import FileNameModel
-from QLearning.QLearning.q_learning import q_learn
+from pyIyo.ai.rl.QAgent import QAgent
 import numpy as np
 import pdb
+import time
 import json
 import sys, os
 
@@ -35,34 +36,24 @@ def form(request):
 
 
 def complete(request):
+    print(request)
     dir_path = '/Users/mzntaka0/Work/9DW/IYO/reinforcement_learning/web/RLweb/upload_form/static/files/'
     result_path = '/Users/mzntaka0/Work/9DW/IYO/reinforcement_learning/web/RLweb/upload_form/static/results/'
     uploaded_file = FileNameModel.objects.latest('upload_time').file_name
     with open(dir_path+uploaded_file, 'rb') as f:
-        print('f: {}'.format(f))
-        parameters = json.load(f)
+        params = json.load(f)
 
-    final_Q = {'final_Q': 
-                q_learn(
-                episode_num=parameters["epsode_num"],
-                R=np.array(parameters["R"]),
-                goal=parameters["goal"],
-                alpha=parameters["alpha"],
-                gamma=parameters["gamma"],
-                tau=parameters["tau"],
-                epsilon=parameters["epsilon"],
-                ).tolist()
-            }
+    q_agent = QAgent(params)
+    start_time = time.time() 
+    final_Q = q_agent.run()
+    elapsed_time = time.time() - start_time
+    final_Q['process_time'] = elapsed_time
 
-    parameters['result'] = final_Q['final_Q']
+    params['process_time'] = final_Q['process_time']
+    params['output'] = final_Q['outputs']
 
-    result_file = 'result_{}'.format(FileNameModel.objects.latest('upload_time').file_name)
+    result_file = 'output_{}'.format(FileNameModel.objects.latest('upload_time').file_name)
     with open(result_path+result_file, 'w') as f:
-        json.dump(parameters, f)
-
-
-    #final_Q['final_Q'] = '\n'.join('{}'.format(final_Q['final_Q']))
-
+        json.dump(params, f)
 
     return render(request, 'upload_form/complete.html', final_Q)
-

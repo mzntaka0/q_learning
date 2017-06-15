@@ -1,0 +1,7 @@
+{
+    "iterations": 100,
+    "alpha": 0.8,
+    "gamma": 0.5,
+    "tau": 2000.0,
+    "epsilon": 0.7
+}

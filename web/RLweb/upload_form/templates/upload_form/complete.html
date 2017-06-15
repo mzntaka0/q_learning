@@ -5,7 +5,16 @@
     <div align="center">
         <h3 align="center">Q-Learning result</h3>
     <br>
-        {{ final_Q }}
+        <table border='1'>
+            <tr>
+                <th>process time</th>
+                <td>{{ process_time}}</td>
+            </tr>
+            <tr>
+                <th>final Q value</th>
+                <td>{{ outputs }}</td>
+            </tr>
+        </table>
     <br>
     <br>
         <a href="{% url 'upload_form:form' %}"><button>back</button></a>
