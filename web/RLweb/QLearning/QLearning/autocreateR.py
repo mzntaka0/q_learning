@@ -14,7 +14,7 @@ def autocreateR(dim):
 
     path_lists = []
     for i in range(dim):
-        path_num = np.random.randint(1, int(2*dim/5.0))
+        path_num = np.random.randint(int(3*dim/5.0), dim-1)
         path_lists.append(
                 np.random.randint(0, dim, path_num)
                 )
@@ -44,19 +44,18 @@ if __name__ == '__main__':
         print(np_R)
 
 
-        g = nx.DiGraph()
+        #g = nx.DiGraph()
 
-        for i in range(np_R.shape[0]):
-            for j in range(np_R.shape[1]):
-                if np_R[i][j] == 0 or R[i][j] == 100:
-                    g.add_edge(i, j)
+        #for i in range(np_R.shape[0]):
+        #    for j in range(np_R.shape[1]):
+        #        if np_R[i][j] == 0 or R[i][j] == 100:
+        #            g.add_edge(i, j)
 
-        for path in nx.all_simple_paths(g, source=0, target=goal_node):
-            print(path)
-        print(g.edges())
-        pos = nx.circular_layout(g, dim=2)
-        nx.draw(g, pos)
-        plt.show()
+        #nx.all_simple_paths(g, source=0, )
+        #print(g.edges())
+        #pos = nx.circular_layout(g, dim=2)
+        #nx.draw(g, pos)
+        #plt.show()
 
 
 
@@ -68,11 +67,11 @@ if __name__ == '__main__':
         #ax.invert_yaxis()
         #heatmap = ax.pcolor(R, cmap='GnBu')
         #plt.show()
-        #with open('../../test_jsons/params_without_R.json', 'rb') as f:
-        #    params_without_R = json.load(f)
+        with open('../../test_jsons/params_without_R.json', 'rb') as f:
+            params_without_R = json.load(f)
 
-        #params_without_R['R'] = R
-        #params_without_R['goal'] = goal_node
+        params_without_R['R'] = R
+        params_without_R['goal'] = goal_node
 
-        #with open('../../test_jsons/params_dim_{}.json'.format(dim), 'w') as f:
-        #    json.dump(params_without_R, f)
+        with open('../../test_jsons/params_dim_{}.json'.format(dim), 'w') as f:
+            json.dump(params_without_R, f)
